@@ -1,0 +1,5 @@
+C:/projects/rrrbot/vsprojects/RRRBotCore/lib/jsoncpp/CMakeFiles/ALL_BUILD.dir
+C:/projects/rrrbot/vsprojects/RRRBotApplication/CMakeFiles/RRRBotApplication.dir
+C:/projects/rrrbot/vsprojects/RRRBotCore/CMakeFiles/RRRBotCore.dir
+C:/projects/rrrbot/vsprojects/CMakeFiles/ZERO_CHECK.dir
+C:/projects/rrrbot/vsprojects/RRRBotCore/lib/jsoncpp/CMakeFiles/jsoncpp.dir

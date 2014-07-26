@@ -1,0 +1,53 @@
+# CMake generation dependency list for this directory.
+C:/projects/rrrbot/CMakeLists.txt
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeDetermineSystem.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeSystem.cmake.in
+C:/projects/rrrbot/vsprojects/CMakeFiles/3.0.0/CMakeSystem.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeDetermineCCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeDetermineCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeDetermineCompilerId.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CompilerId/VS-10.vcxproj.in
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeFindBinUtils.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeClDeps.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCCompiler.cmake.in
+C:/projects/rrrbot/vsprojects/CMakeFiles/3.0.0/CMakeCCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeDetermineCXXCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeDetermineCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows-CXX.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeDetermineCompilerId.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CompilerId/VS-10.vcxproj.in
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeFindBinUtils.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeClDeps.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCXXCompiler.cmake.in
+C:/projects/rrrbot/vsprojects/CMakeFiles/3.0.0/CMakeCXXCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeSystemSpecificInformation.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeGenericSystem.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/WindowsPaths.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCInformation.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows-MSVC-C.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows-MSVC.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeDetermineRCCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeRCCompiler.cmake.in
+C:/projects/rrrbot/vsprojects/CMakeFiles/3.0.0/CMakeRCCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeRCInformation.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeTestRCCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCommonLanguageInclude.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeTestCCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeTestCompilerCommon.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeDetermineCompilerABI.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeParseImplicitLinkInfo.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCCompilerABI.c
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCCompiler.cmake.in
+C:/projects/rrrbot/vsprojects/CMakeFiles/3.0.0/CMakeCCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCXXInformation.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows-MSVC-CXX.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/Platform/Windows-MSVC.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCommonLanguageInclude.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeTestCXXCompiler.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeTestCompilerCommon.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeDetermineCompilerABI.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeParseImplicitLinkInfo.cmake
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCXXCompilerABI.cpp
+c:/Program Files (x86)/CMake/share/cmake-3.0/Modules/CMakeCXXCompiler.cmake.in
+C:/projects/rrrbot/vsprojects/CMakeFiles/3.0.0/CMakeCXXCompiler.cmake
