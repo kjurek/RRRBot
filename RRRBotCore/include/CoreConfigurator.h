@@ -50,9 +50,9 @@ namespace RRRBot
                 bool loadConfig(std::string configFilePath);
                 bool isConfigValid() const;
 
-                Offsets& getOffsets() { return m_offsets; }
-                ServerSettings& getServerSettings() { return m_serverSettings; }
-                ProcessInfo& getProcessInfo() { return m_processInfo; }
+                Offsets getOffsets() { return m_offsets; }
+                ServerSettings getServerSettings() { return m_serverSettings; }
+                ProcessInfo getProcessInfo() { return m_processInfo; }
             private:
                 std::string m_configFilePath;
                 Offsets m_offsets;

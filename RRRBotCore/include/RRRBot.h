@@ -5,23 +5,23 @@
 #include <mutex>
 #include <memory>
 
-class CRRrBot
+namespace RRRBot
 {
-public:
-    void stop();
-    void start();
-    void mainLoop();
+    class CRRRBot
+    {
+    public:
+		void run();
+		void mainLoop();
+        static CRRRBot& getInstance();
 
-    bool isRunning() const;
+        CRRRBot(const CRRRBot&) = delete;
+        CRRRBot& operator=(const CRRRBot &) = delete;
+    protected:
+        CRRRBot();
+        bool m_isRunning;
+        std::unique_ptr<std::thread> m_pMainLoopThread;
+    };
+}
 
-    static CRRrBot& getInstance();
-
-    CRRrBot(const CRRrBot&) = delete;
-    CRRrBot& operator=(const CRRrBot &) = delete;
-protected:
-    CRRrBot();
-    bool m_isRunning;
-    std::unique_ptr<std::thread> m_pMainLoopThread;
-};
 
 #endif // RRRBOT_H

@@ -1,27 +1,39 @@
 #ifndef CORE_H
 #define CORE_H
 
-#include "ICoreApi.h"
+#include "core_api.pb.h"
 #include "CoreConfigurator.h"
 
 namespace RRRBot
 {
     namespace Core
     {
-        class Core : public ICoreApi
+        class Core : public CoreApi
         {
         public:
-            Core();
-            virtual ~Core() { }
+			virtual ~Core() { }
 
-            // Getters
-            virtual Common::PlayerInfo getPlayerInfo();
-            virtual Common::Inventory getInventory();
+			virtual const ::google::protobuf::rpc::Error GetPlayerInfo(
+				const ::Empty* request,
+				::PlayerInfo* response);
 
-            // Actions
-            virtual void goToXY(unsigned int x, unsigned int y);
-            virtual void mouseClick(unsigned int x, unsigned int y);
-            virtual void pressKey(unsigned char virtualKeyCode);
+			virtual const ::google::protobuf::rpc::Error GetInventory(
+				const ::Empty* request,
+				::Inventory* response);
+
+			virtual const ::google::protobuf::rpc::Error GoToXY(
+				const ::Coords* request,
+				::Empty* response);
+
+			virtual const ::google::protobuf::rpc::Error MouseClick(
+				const ::Coords* request,
+				::Empty* response);
+
+			virtual const ::google::protobuf::rpc::Error PressKey(
+				const ::Key* request,
+				::Empty* response);
+
+            Config::CoreConfigurator getConfigurator() const { return m_configurator; }
         private:
             Config::CoreConfigurator m_configurator;
 
@@ -36,7 +48,6 @@ namespace RRRBot
             {
                 *reinterpret_cast<T*>(address) = value;
             }
-
         };
     }
 }

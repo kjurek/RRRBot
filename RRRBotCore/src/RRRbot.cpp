@@ -1,38 +1,40 @@
 #include "RRRBot.h"
+#include "Core.h"
+#include <google/protobuf/rpc/rpc_server.h>
 
-CRRrBot::CRRrBot() :
-    m_isRunning(false)
-{ }
-
-CRRrBot& CRRrBot::getInstance()
+namespace RRRBot
 {
-    static CRRrBot instance;
-    return instance;
-}
+    CRRRBot::CRRRBot() :
+        m_isRunning(false)
+    { }
 
-void CRRrBot::start()
-{
-    if(m_isRunning)
+    CRRRBot& CRRRBot::getInstance()
     {
-        stop();
+        static CRRRBot instance;
+        return instance;
     }
-    m_pMainLoopThread = std::make_unique<std::thread>(&CRRrBot::mainLoop, this);
+
+    void CRRRBot::run()
+    {
+        if(!m_isRunning)
+        {
+			m_pMainLoopThread = std::make_unique<std::thread>(&CRRRBot::mainLoop, this);
+        }        
+    }
+
+    void CRRRBot::mainLoop()
+    {
+        try {
+			::google::protobuf::rpc::Server server;
+			Core::Core core;
+			server.AddService(&core, true);
+			server.BindAndServe(core.getConfigurator().getServerSettings().port);
+        }
+        catch(const std::exception & e)
+        {
+            MsgBox(e.what());
+            return;
+        }
+    }
 }
 
-void CRRrBot::stop()
-{
-    m_isRunning = false;
-    if(m_pMainLoopThread.get() != nullptr)
-    {
-        m_pMainLoopThread->join();
-        m_pMainLoopThread.reset(nullptr);
-    }
-}
-
-void CRRrBot::mainLoop()
-{
-    while(m_isRunning)
-    {
-        std::this_thread::sleep_for(std::chrono::seconds(2));
-    }
-}

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\lib\protorpc.cxx\src\google\protobuf\io\coded_stream.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+
+    <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/io/coded_stream.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/stubs/common.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/stubs/stringprintf.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/descriptor.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/descriptor.pb.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/descriptor_database.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/dynamic_message.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/extension_set.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/extension_set_heavy.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/generated_message_reflection.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/generated_message_util.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/io/gzip_stream.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/importer.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/message.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/message_lite.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/stubs/once.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/parser.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/io/printer.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/reflection_ops.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/repeated_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/service.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/stubs/structurally_valid.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/stubs/strutil.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/stubs/substitute.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/text_format.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/io/tokenizer.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/unknown_field_set.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/wire_format.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/wire_format_lite.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/io/zero_copy_stream.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/io/zero_copy_stream_impl.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/io/zero_copy_stream_impl_lite.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/main.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/code_generator.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/command_line_interface.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/subprocess.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/zip_writer.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/plugin.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/plugin.pb.cc
+
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_enum.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_enum_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_extension.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_file.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_generator.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_helpers.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_message.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_message_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_primitive_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_service.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cpp/cpp_string_field.cc
+
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_enum.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_enum_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_extension.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_file.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_generator.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_helpers.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_message.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_message_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_primitive_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_service.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_string_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/java/java_doc_comment.cc
+
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/python/python_generator.cc
+
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_enum.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_enum_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_extension.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_file.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_generator.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_helpers.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_message.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_message_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_primitive_field.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_service.cc
+  <ClCompile Include="..\..\..\lib\protorpc.cxx\src/google/protobuf/compiler/cxx25x/cxx_string_field.cc
+
+  </ItemGroup>
+</Project>
