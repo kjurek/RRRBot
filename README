@@ -1,0 +1,4 @@
+Plik config nalezy umiescic w folderze %appdata%\RRRBot
+Aktualny projekt jest w folderze vsprojects\rrrbot
+Pliki kompiluja sie do katalogu vsprojects\rrrbot\release
+Dll mozna injectnac cheat enginem Memory view -> tools -> inject dll

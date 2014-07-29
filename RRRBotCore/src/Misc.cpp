@@ -31,7 +31,7 @@ HWND FindWindowFromProcessId( DWORD dwProcessId ) {
 std::string GetAppDataFolderPath()
 {
     TCHAR szPath[MAX_PATH];
-    if (SUCCEEDED(SHGetFolderPath(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)))
+	if (SUCCEEDED(SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, szPath)))
     {
         return szPath;
     }

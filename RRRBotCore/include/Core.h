@@ -1,55 +1,56 @@
 #ifndef CORE_H
 #define CORE_H
 
-#include "core_api.pb.h"
+
+//#include "core_api.pb.h"
+#include <vector>
+#include "CoreApi.h"
 #include "CoreConfigurator.h"
 
 namespace RRRBot
 {
-    namespace Core
-    {
-        class Core : public CoreApi
-        {
-        public:
-			virtual ~Core() { }
+	namespace Core
+	{
+		class Core : public CoreApi
+		{
+		public:
+			virtual PlayerInfo GetPlayerInfo();
+			virtual Inventory GetInventory();
+			virtual void GoToXY(Coords coords);
+			virtual void MouseClick(Coords coords);
+			virtual void PressKey(unsigned int virtualKeyCode);
 
-			virtual const ::google::protobuf::rpc::Error GetPlayerInfo(
-				const ::Empty* request,
-				::PlayerInfo* response);
+			Config::CoreConfigurator& getConfigurator() { return m_configurator; }
+		private:
 
-			virtual const ::google::protobuf::rpc::Error GetInventory(
-				const ::Empty* request,
-				::Inventory* response);
+			Config::CoreConfigurator m_configurator;
 
-			virtual const ::google::protobuf::rpc::Error GoToXY(
-				const ::Coords* request,
-				::Empty* response);
+			template<typename T, typename... Args>
+			T readMemory(int base, int offset, Args... args)
+			{
+				if (sizeof...(args) == 0)
+				{
+					return readMemory<T>(base + offset);
+				}
+				else
+				{
+					return readMemory<T>(readMemory<int>(base + offset), args...);
+				}
+			}
 
-			virtual const ::google::protobuf::rpc::Error MouseClick(
-				const ::Coords* request,
-				::Empty* response);
+			template<typename T>
+			T readMemory(int addr)
+			{
+				return *reinterpret_cast<T*>(addr);
+			}
 
-			virtual const ::google::protobuf::rpc::Error PressKey(
-				const ::Key* request,
-				::Empty* response);
-
-            Config::CoreConfigurator getConfigurator() const { return m_configurator; }
-        private:
-            Config::CoreConfigurator m_configurator;
-
-            template<class T>
-            T readMemory(unsigned int address)
-            {
-                return *reinterpret_cast<T*>(address);
-            }
-
-            template<class T>
-            void writeMemory(unsigned int address, T value)
-            {
-                *reinterpret_cast<T*>(address) = value;
-            }
-        };
-    }
+			template<typename T>
+			void writeMemory(T value, int address)
+			{
+				*reinterpret_cast<T*>(address) = value;
+			}
+		};
+	}
 }
 
 #endif

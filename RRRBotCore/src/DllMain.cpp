@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "RRRBot.h"
 
 BOOL WINAPI DllMain(
     _In_  HINSTANCE hinstDLL,
@@ -10,7 +11,7 @@ BOOL WINAPI DllMain(
     {
         case DLL_PROCESS_ATTACH:
         {
-            MsgBox("Attach!");
+            RRRBot::CRRRBot::getInstance().run();
             break;
         }
         case DLL_PROCESS_DETACH:

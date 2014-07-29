@@ -2,6 +2,7 @@
 #define CORECONFIGURATOR_H
 
 #include <string>
+#include <sstream>
 #include <json/value.h>
 #include <json/reader.h>
 #include "Misc.h"
@@ -14,25 +15,31 @@ namespace RRRBot
         {
             struct Offsets
             {
-                unsigned int m_baseAddress;
+                int m_baseAddress;
 
                 struct Mouse
                 {
-                    unsigned int x, y;
+                    int x, y;
                 } m_mouse;
 
                 struct Player
                 {
-                    unsigned int hp;
-                    unsigned int x, y, z;
-                    unsigned int angle;
+					int base;
+                    int hp;
+                    int x, y, z;
+                    int angle;
+
+					struct Move {
+						int offset1;
+						int offset2;
+					} move;
                 } m_player;
             };
 
             struct ServerSettings
             {
                 std::string ip;
-                unsigned int port;
+                int port;
             };
 
             struct ProcessInfo
@@ -47,6 +54,7 @@ namespace RRRBot
                 CoreConfigurator();
 
                 std::string getConfigFilePath() const { return m_configFilePath; }
+				std::string getConfigLog() const { return m_configLog.str(); }
                 bool loadConfig(std::string configFilePath);
                 bool isConfigValid() const;
 
@@ -55,6 +63,7 @@ namespace RRRBot
                 ProcessInfo getProcessInfo() { return m_processInfo; }
             private:
                 std::string m_configFilePath;
+				std::ostringstream m_configLog;
                 Offsets m_offsets;
                 ServerSettings m_serverSettings;
                 ProcessInfo m_processInfo;

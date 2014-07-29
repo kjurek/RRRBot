@@ -4,6 +4,7 @@
 #include <thread>
 #include <mutex>
 #include <memory>
+#include "Core.h"
 
 namespace RRRBot
 {
@@ -18,8 +19,10 @@ namespace RRRBot
         CRRRBot& operator=(const CRRRBot &) = delete;
     protected:
         CRRRBot();
-        bool m_isRunning;
-        std::unique_ptr<std::thread> m_pMainLoopThread;
+        
+		bool m_isRunning;
+        HANDLE m_hConsoleIn, m_hConsoleOut;
+		Core::Core m_core;
     };
 }
 
