@@ -4,13 +4,14 @@ namespace RRRBot
 {
 	namespace Commands
 	{
-		CMouseClickCommand::CMouseClickCommand(
-			CProcessManager* processManager, 
-			OffsetManagers::COffsetsManager* offsetsManager
-		)
-			:	m_pProcessManager(processManager),
-				m_pOffsetsManager(offsetsManager)
-		{ }
+		std::shared_ptr<CCommand> CMouseClickCommand::clone()
+		{
+			auto copy = std::make_shared<CMouseClickCommand>(m_processManager, m_core);
+			copy->m_nextStep = m_nextStep;
+			copy->m_x = m_x;
+			copy->m_y = m_y;
+			return copy;
+		}
 
 		std::string CMouseClickCommand::name() const
 		{
@@ -27,11 +28,11 @@ namespace RRRBot
 
 		void CMouseClickCommand::commandStep()
 		{
-			m_pProcessManager->writeMemory(m_pOffsetsManager->m_mouseOffsetsManager.xAddr(), m_x);
-			m_pProcessManager->writeMemory(m_pOffsetsManager->m_mouseOffsetsManager.yAddr(), m_y);
+			m_processManager.writeMemory(m_core.m_offsetManager.m_mouseOffsetsManager.xAddr(), m_x);
+			m_processManager.writeMemory(m_core.m_offsetManager.m_mouseOffsetsManager.yAddr(), m_y);
 
 			SendMessage(
-				m_pProcessManager->getWindowHandle(),
+				m_processManager.getWindowHandle(),
 				WM_LBUTTONDBLCLK,
 				MK_LBUTTON,
 				NULL

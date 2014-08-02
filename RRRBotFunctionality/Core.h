@@ -2,26 +2,39 @@
 #define CORE_H
 
 #include <set>
+#include <memory>
 #include "Command.h"
+#include "OffsetsManager.h"
+#include "Player.h"
 
 namespace RRRBot
 {
-	class CCore
+	namespace Core
 	{
-	public:
-		void registerCommand(CCommand* command);
-		void unregisterCommand(std::string commandName);
-		CCommand* getCommand(std::string commandName);
-	private:
-		class CCommandPtrComparator
+		class CCore
 		{
 		public:
-			bool operator()(const CCommand* a, const CCommand* b) const {
-				return *a < *b;
-			}
+			CCore() : m_player({ 0 }) { }
+			void registerCommand(std::shared_ptr<CCommand> command);
+			void unregisterCommand(std::string commandName);
+			std::shared_ptr<CCommand> getCommand(std::string commandName);
+			
+			GameData::Player getPlayer() const { return m_player; }
+			void setPlayer(GameData::Player& player) { m_player = player; }
+
+			RRRBot::OffsetManagers::COffsetsManager m_offsetManager;
+		private:
+			class CCommandPtrComparator
+			{
+			public:
+				bool operator()(std::shared_ptr<CCommand> a, std::shared_ptr<CCommand> b) const {
+					return *a < *b;
+				}
+			};
+			std::set <std::shared_ptr<CCommand>, CCommandPtrComparator> m_vpCommands;
+			GameData::Player m_player;
 		};
-		std::set <CCommand*, CCommandPtrComparator> m_vpCommands;
-	};
+	}	
 }
 
 #endif

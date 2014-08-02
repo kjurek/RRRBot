@@ -12,14 +12,11 @@ namespace RRRBot
 		class COffsetsManager
 		{
 		public:
-			COffsetsManager(
-				CProcessManager* processManager,
-				Offsets::PlayerOffsets* playerOffsets,
-				Offsets::MouseOffsets* mouseOffsets
-			)
-				:	m_playerOffsetsManager(processManager, playerOffsets),
-					m_mouseOffsetsManager(processManager, mouseOffsets)
-			{ }
+			void configure(
+				CProcessManager& processManager,
+				Offsets::PlayerOffsets& playerOffsets,
+				Offsets::MouseOffsets& mouseOffsets
+			);
 
 			CPlayerOffsetsManager m_playerOffsetsManager;
 			CMouseOffsetsManager m_mouseOffsetsManager;

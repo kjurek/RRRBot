@@ -3,7 +3,7 @@
 
 #include "Command.h"
 #include "ProcessManager.h"
-#include "OffsetsManager.h"
+#include "Core.h"
 
 namespace RRRBot
 {
@@ -13,17 +13,21 @@ namespace RRRBot
 		{
 		public:
 			CMouseClickCommand(
-				CProcessManager* processManager,
-				OffsetManagers::COffsetsManager* offsetsManager
-			);
+				CProcessManager& processManager,
+				RRRBot::Core::CCore& core
+			)	:	m_processManager(processManager),
+					m_core(core),
+					m_nextStep(true)
+			{ }
 
+			virtual std::shared_ptr<CCommand> clone();
 			virtual std::string name() const;
 			virtual void parseInput(std::istream& is);
 			virtual void commandStep();
 			virtual bool hasNextStep();
 		private:
-			CProcessManager* m_pProcessManager;
-			OffsetManagers::COffsetsManager* m_pOffsetsManager;
+			CProcessManager& m_processManager;
+			RRRBot::Core::CCore& m_core;
 			int m_x, m_y;
 			bool m_nextStep;
 		};

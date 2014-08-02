@@ -81,9 +81,6 @@
     <ClInclude Include="ProcessManager.h">
       <Filter>Header Files\ProcessManager</Filter>
     </ClInclude>
-    <ClInclude Include="Misc.h">
-      <Filter>Header Files\ProcessManager</Filter>
-    </ClInclude>
     <ClInclude Include="UpdatePlayerInfoCommand.h">
       <Filter>Header Files\Commands\BasicCommands</Filter>
     </ClInclude>
@@ -137,9 +134,6 @@
     <ClCompile Include="ProcessManager.cpp">
       <Filter>Source Files\ProcessManager</Filter>
     </ClCompile>
-    <ClCompile Include="Misc.cpp">
-      <Filter>Source Files\ProcessManager</Filter>
-    </ClCompile>
     <ClCompile Include="MouseClickCommand.cpp">
       <Filter>Source Files\Commands\BasicCommands</Filter>
     </ClCompile>
@@ -150,6 +144,12 @@
       <Filter>Source Files\Offsets\OffsetManagers</Filter>
     </ClCompile>
     <ClCompile Include="PressKeyCommand.cpp">
+      <Filter>Source Files\Commands\BasicCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="OffsetsManager.cpp">
+      <Filter>Source Files\Offsets\OffsetManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdatePlayerInfoCommand.cpp">
       <Filter>Source Files\Commands\BasicCommands</Filter>
     </ClCompile>
   </ItemGroup>

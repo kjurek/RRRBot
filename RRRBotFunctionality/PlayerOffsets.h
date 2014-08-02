@@ -1,6 +1,8 @@
 #ifndef PLAYEROFFSETS_H
 #define PLAYEROFFSETS_H
 
+#include <vector>
+
 namespace RRRBot
 {
 	namespace Offsets
@@ -10,7 +12,7 @@ namespace RRRBot
 			int base;
 			int x, y, z;
 			int angle;
-			int move[2];
+			std::vector<int> move;
 		};
 	}
 }

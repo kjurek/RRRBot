@@ -31,6 +31,7 @@ public:
 	CCommand();
 	virtual ~CCommand();
 	
+	virtual std::shared_ptr<CCommand> clone() = 0;
 	virtual std::string name() const = 0;
 	virtual void parseInput(std::istream& is) = 0;
 	virtual void commandStep() = 0;

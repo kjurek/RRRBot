@@ -5,6 +5,14 @@ namespace RRRBot
 {
 	namespace Commands
 	{
+		std::shared_ptr<CCommand> CPressKeyCommand::clone()
+		{
+			auto copy = std::make_shared<CPressKeyCommand>(m_processManager);
+			copy->m_nextStep = m_nextStep;
+			copy->m_key = m_key;
+			return copy;
+		}
+
 		std::string CPressKeyCommand::name() const
 		{
 			return "PressKey";
@@ -37,7 +45,7 @@ namespace RRRBot
 		void CPressKeyCommand::commandStep()
 		{
 			SendMessage(
-				m_pProcessManager->getWindowHandle(),
+				m_processManager.getWindowHandle(),
 				WM_KEYDOWN,
 				m_key,
 				1

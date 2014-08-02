@@ -74,9 +74,6 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="Misc.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="MouseClickCommand.h" />
     <ClInclude Include="MouseOffsetsManager.h" />
     <ClInclude Include="MouseOffsets.h" />
@@ -95,14 +92,13 @@
     <ClCompile Include="CommandPausedState.cpp" />
     <ClCompile Include="CommandRunningState.cpp" />
     <ClCompile Include="Core.cpp" />
-    <ClCompile Include="Misc.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="MouseClickCommand.cpp" />
     <ClCompile Include="MouseOffsetsManager.cpp" />
+    <ClCompile Include="OffsetsManager.cpp" />
     <ClCompile Include="PlayerOffsetsManager.cpp" />
     <ClCompile Include="PressKeyCommand.cpp" />
     <ClCompile Include="ProcessManager.cpp" />
+    <ClCompile Include="UpdatePlayerInfoCommand.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

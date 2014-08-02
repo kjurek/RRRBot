@@ -11,18 +11,15 @@ namespace RRRBot
 		class CMouseOffsetsManager
 		{
 		public:
-			CMouseOffsetsManager(CProcessManager* processManager, Offsets::MouseOffsets* mouseOffsets)
-				:	m_pProcessManager(processManager),
-					m_pMouseOffsets(mouseOffsets)
-			{
-				gameDllAddress = reinterpret_cast<DWORD>(m_pProcessManager->getModuleAddress("Game.dll"));
-			}
+			void configure(CProcessManager* processManager, Offsets::MouseOffsets& mouseOffsets);
+			void setMouseOffsets(Offsets::MouseOffsets& mouseOffsets) { m_mouseOffsets = mouseOffsets; }
+			Offsets::MouseOffsets getMouseOffsets() const { return m_mouseOffsets; }
 
 			DWORD xAddr();
 			DWORD yAddr();
 		private:
 			CProcessManager* m_pProcessManager;
-			Offsets::MouseOffsets* m_pMouseOffsets;
+			Offsets::MouseOffsets m_mouseOffsets;
 			DWORD gameDllAddress;
 		};
 	}

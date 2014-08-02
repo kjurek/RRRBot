@@ -2,19 +2,36 @@
 
 namespace RRRBot
 {
-	void CCore::registerCommand(CCommand* command)
+	namespace Core
 	{
-		m_vpCommands.insert(command);
-	}
+		void CCore::registerCommand(std::shared_ptr<CCommand> command)
+		{
+			m_vpCommands.insert(command);
+		}
 
-	void CCore::unregisterCommand(std::string commandName)
-	{
-		//m_vpCommands.erase(;
-	}
+		void CCore::unregisterCommand(std::string commandName)
+		{
+			for (auto it = m_vpCommands.begin(); it != m_vpCommands.end(); ++it)
+			{
+				if ((*it)->name() == commandName)
+				{
+					m_vpCommands.erase(it);
+					return;
+				}
+			}
+		}
 
-	CCommand* CCore::getCommand(std::string commandName)
-	{
-
+		std::shared_ptr<CCommand> CCore::getCommand(std::string commandName)
+		{
+			for (auto it = m_vpCommands.begin(); it != m_vpCommands.end(); ++it)
+			{
+				if ((*it)->name() == commandName)
+				{
+					return (*it)->clone();
+				}
+			}
+			return nullptr;
+		}
 	}
 }
 

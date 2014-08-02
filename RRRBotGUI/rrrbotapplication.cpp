@@ -1,18 +1,25 @@
 #include <QMessageBox>
+#include <qfiledialog.h>
 #include <sstream>
 #include <vector>
 #include <memory>
 #include "rrrbotapplication.h"
 #include "PressKeyCommand.h"
 #include "MouseClickCommand.h"
+#include "UpdatePlayerInfoCommand.h"
 
 RRRBotApplication::RRRBotApplication(QWidget *parent)
-	: QMainWindow(parent)
+	:	QMainWindow(parent)
 {
 	ui.setupUi(this);
 	connect(ui.GetProcessInfoButton, SIGNAL(clicked()), this, SLOT(handleGetProcessInfoButton()));
 	connect(ui.LaunchCommandButton, SIGNAL(clicked()), this, SLOT(handleLaunchCommandButton()));
 	connect(ui.ClearButton, SIGNAL(clicked()), this, SLOT(handleClearButtonCommand()));
+	connect(ui.actionLoad_Config, SIGNAL(triggered()), this, SLOT(handleLoadConfig()));
+
+	m_timer = new QTimer(this);
+	connect(m_timer, SIGNAL(timeout()), this, SLOT(handleRefresh()));
+	m_timer->start(1000);
 }
 
 RRRBotApplication::~RRRBotApplication()
@@ -52,13 +59,7 @@ void RRRBotApplication::handleGetProcessInfoButton()
 			os.str("");
 			os.clear();
 		}
-		for (int i = 0; i < ui.tabWidget->count(); ++i)
-		{
-			if (i != ui.tabWidget->currentIndex())
-			{
-				ui.tabWidget->setTabEnabled(i, true);
-			}
-		}
+		ui.actionLoad_Config->setEnabled(true);
 	}
 	catch (CProcessManagerException e)
 	{
@@ -68,34 +69,89 @@ void RRRBotApplication::handleGetProcessInfoButton()
 
 void RRRBotApplication::handleLaunchCommandButton()
 {
-	try {
-		std::vector<std::unique_ptr<CCommand> > commands;
-		commands.push_back(std::make_unique<RRRBot::Commands::CPressKeyCommand>(&m_processManager));
-		//commands.push_back(new RRRBot::Commands::CMouseClickCommand(&m_processManager));
-
+	try 
+	{		
 		std::stringstream ss(ui.ConsoleInputEdit->text().toStdString());
 		std::string commandName;
 		ss >> commandName;
 
-		for (auto& command : commands)
+		auto requestedCommand = m_core.getCommand(commandName);
+		if (nullptr != requestedCommand.get())
 		{
-			if (command->name() == commandName)
-			{
-				command->parseInput(ss);
-				command->execute();
-				ui.CommandOutputEdit->append((commandName + " completed").c_str());
-			}
+			requestedCommand->parseInput(ss);
+			requestedCommand->execute();
+			ui.CommandOutputEdit->append((commandName + " completed").c_str());
+		}
+		else
+		{
+			ui.CommandOutputEdit->append(("error " + commandName + " not found").c_str());
 		}
 	}
-	catch (CCommandException e)
+	catch (std::exception& e)
 	{
 		ui.CommandOutputEdit->append(e.what());
 	}
-
-
 }
 
 void RRRBotApplication::handleClearButtonCommand()
 {
 	ui.CommandOutputEdit->clear();
+}
+
+void RRRBotApplication::handleLoadConfig()
+{
+	QString configFilePath = QFileDialog::getOpenFileName();
+	m_configLoader.load(configFilePath.toStdString());
+	
+	auto playerOffsets = m_configLoader.getPlayerOffsets();
+	auto mouseOffsets = m_configLoader.getMouseOffsets();
+	m_core.m_offsetManager.configure(m_processManager, playerOffsets, mouseOffsets);
+
+	// add some commands
+	m_core.registerCommand(std::make_shared<RRRBot::Commands::CUpdatePlayerInfoCommand>(m_processManager, m_core));
+	m_core.registerCommand(std::make_shared<RRRBot::Commands::CPressKeyCommand>(m_processManager));
+	m_core.registerCommand(std::make_shared<RRRBot::Commands::CMouseClickCommand>(m_processManager, m_core));
+	
+	for (int i = 1; i < ui.tabWidget->count(); ++i)
+	{
+		ui.tabWidget->setTabEnabled(i, true);
+	}
+
+	auto& logEdit = ui.LogEdit;
+
+	auto appendOffsetFunc = [&logEdit](int offset, std::string offsetName)
+	{
+		std::ostringstream os;
+		os << offsetName << ": " << offset;
+		logEdit->append(os.str().c_str());
+	};
+
+	logEdit->append("Mouse offsets:");
+	appendOffsetFunc(mouseOffsets.x, "x");
+	appendOffsetFunc(mouseOffsets.y, "y");
+
+	logEdit->append("");
+	logEdit->append("Player offsets:");
+	appendOffsetFunc(playerOffsets.base, "base");
+	appendOffsetFunc(playerOffsets.x, "x");
+	appendOffsetFunc(playerOffsets.y, "y");
+	appendOffsetFunc(playerOffsets.z, "z");
+	appendOffsetFunc(playerOffsets.angle, "angle");
+	appendOffsetFunc(playerOffsets.move[0], "move[0]");
+	appendOffsetFunc(playerOffsets.move[1], "move[1]");	
+}
+
+void RRRBotApplication::handleRefresh()
+{
+	std::ostringstream os;
+	auto player = m_core.getPlayer();
+	
+	os << "(" << player.x << ", " << player.y << ", " << player.z << ")";
+	ui.PositionValue->setText(os.str().c_str());
+
+	os.str("");
+	os.clear();
+
+	os << player.angle;
+	ui.AngleValue->setText(os.str().c_str());
 }

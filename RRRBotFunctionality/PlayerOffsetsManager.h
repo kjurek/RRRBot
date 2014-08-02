@@ -11,12 +11,9 @@ namespace RRRBot
 		class CPlayerOffsetsManager
 		{
 		public:
-			CPlayerOffsetsManager(CProcessManager* processManager, Offsets::PlayerOffsets* playerOffsets) 
-				:	m_pProcessManager(processManager),
-					m_pPlayerOffsets(playerOffsets)
-			{
-				gameDllAddress = reinterpret_cast<DWORD>(m_pProcessManager->getModuleAddress("Game.dll"));
-			}
+			void configure(CProcessManager* processManager, Offsets::PlayerOffsets& playerOffsets);
+			void setPlayerOffsets(Offsets::PlayerOffsets& playerOffsets) { m_playerOffsets = playerOffsets; }
+			Offsets::PlayerOffsets getPlayerOffsets() const { return m_playerOffsets; }
 			
 			DWORD xAddr();
 			DWORD yAddr();
@@ -25,7 +22,7 @@ namespace RRRBot
 			DWORD moveAddr();
 		private:
 			CProcessManager* m_pProcessManager;
-			Offsets::PlayerOffsets* m_pPlayerOffsets;
+			Offsets::PlayerOffsets m_playerOffsets;
 			DWORD gameDllAddress;
 		};
 	}

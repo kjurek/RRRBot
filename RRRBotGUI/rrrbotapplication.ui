@@ -21,7 +21,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="GeneralTab">
        <attribute name="title">
@@ -134,45 +134,31 @@
             <string>Player info</string>
            </property>
            <layout class="QGridLayout" name="gridLayout">
-            <item row="1" column="0">
+            <item row="0" column="0">
              <widget class="QLabel" name="PositionLabel">
               <property name="text">
                <string>Position:</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
+            <item row="1" column="0">
              <widget class="QLabel" name="AngleLabel">
               <property name="text">
                <string>Angle:</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="NameValue">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
+            <item row="1" column="1">
              <widget class="QLabel" name="AngleValue">
               <property name="text">
                <string/>
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
+            <item row="0" column="1">
              <widget class="QLabel" name="PositionValue">
               <property name="text">
                <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="NameLabel">
-              <property name="text">
-               <string>Name:</string>
               </property>
              </widget>
             </item>
@@ -206,6 +192,18 @@
        <attribute name="title">
         <string>Log</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QTextEdit" name="LogEdit"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="ClearLogButton">
+          <property name="text">
+           <string>Clear Log</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="ConsoleTab">
        <property name="enabled">
@@ -268,6 +266,9 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionLoad_Config">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Load Config</string>
    </property>
