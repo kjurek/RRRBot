@@ -1,4 +1,0 @@
-Uwaga :f zeby bot dzialal trzeba skopiowac "config" do katalogu %appdata%\RRRBot
-Aktualna kompilacja projektu tylko w visual studio RRRBot\vsprojects\RRRBot
-Kompiluje sie do katalogu RRRBot\vsprojects\RRRBot\release
-Dll mozna injectnac cheat engine'm Memory View -> tools -> inject dll

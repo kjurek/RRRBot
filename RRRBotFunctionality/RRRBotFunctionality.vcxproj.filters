@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\ProcessManager">
+      <UniqueIdentifier>{689257ae-eae4-48c0-807c-14f5cae1777c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ProcessManager">
+      <UniqueIdentifier>{95d9c60c-7bbb-4d40-b7fd-12a1f1ae5757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Commands">
+      <UniqueIdentifier>{786bf325-d6ce-4565-9c4f-0b6660c84f93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Commands\Command">
+      <UniqueIdentifier>{294041e3-73ce-43e9-a0eb-a725baa1f118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Commands">
+      <UniqueIdentifier>{92757eba-6838-4dcb-9400-7577b8d3d090}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Commands\Command">
+      <UniqueIdentifier>{ae4b098a-98b8-4ba2-9744-725a0d5a00a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Commands\BasicCommands">
+      <UniqueIdentifier>{48e27d6e-2045-4091-884f-901449840643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameData">
+      <UniqueIdentifier>{81194bd3-1054-45e3-b08b-8b4b51dbc95c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Commands\BasicCommands">
+      <UniqueIdentifier>{8d3a74fb-9352-4ad2-a0f8-83a46cbc55de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Offsets">
+      <UniqueIdentifier>{4c8407ac-a357-4396-8c45-666e3fd05d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Offsets">
+      <UniqueIdentifier>{5937b4ac-2ff8-4687-9c14-7d696cf07049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Offsets\Offsets">
+      <UniqueIdentifier>{86a00d5e-1f6d-4ca1-bcc5-780326d347d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Offsets\OffsetManagers">
+      <UniqueIdentifier>{53676304-9059-4a25-9028-1c35e67b868c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Offsets\OffsetManagers">
+      <UniqueIdentifier>{de527932-d962-4637-b925-f0d112c28109}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Header Files\Commands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandState.h">
+      <Filter>Header Files\Commands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandRunningState.h">
+      <Filter>Header Files\Commands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandPausedState.h">
+      <Filter>Header Files\Commands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandCompletedState.h">
+      <Filter>Header Files\Commands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessManager.h">
+      <Filter>Header Files\ProcessManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc.h">
+      <Filter>Header Files\ProcessManager</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdatePlayerInfoCommand.h">
+      <Filter>Header Files\Commands\BasicCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="PressKeyCommand.h">
+      <Filter>Header Files\Commands\BasicCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseClickCommand.h">
+      <Filter>Header Files\Commands\BasicCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Header Files\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerOffsets.h">
+      <Filter>Header Files\Offsets\Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseOffsets.h">
+      <Filter>Header Files\Offsets\Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerOffsetsManager.h">
+      <Filter>Header Files\Offsets\OffsetManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseOffsetsManager.h">
+      <Filter>Header Files\Offsets\OffsetManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="OffsetsManager.h">
+      <Filter>Header Files\Offsets\OffsetManagers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Source Files\Commands\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandCompletedState.cpp">
+      <Filter>Source Files\Commands\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandPausedState.cpp">
+      <Filter>Source Files\Commands\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandRunningState.cpp">
+      <Filter>Source Files\Commands\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessManager.cpp">
+      <Filter>Source Files\ProcessManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc.cpp">
+      <Filter>Source Files\ProcessManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseClickCommand.cpp">
+      <Filter>Source Files\Commands\BasicCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerOffsetsManager.cpp">
+      <Filter>Source Files\Offsets\OffsetManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseOffsetsManager.cpp">
+      <Filter>Source Files\Offsets\OffsetManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="PressKeyCommand.cpp">
+      <Filter>Source Files\Commands\BasicCommands</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
