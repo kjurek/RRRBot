@@ -1,5 +1,6 @@
 #include <ctype.h>
 #include "GotoXYCommand.h"
+#include "ProcessManager.h"
 
 namespace RRRBot
 {
@@ -35,27 +36,40 @@ namespace RRRBot
 		void CGotoXYCommand::commandStep()
 		{
 			static const float tolerance = 5.0f;
-			while (1)
+			static auto pom = m_core.m_offsetManager.m_playerOffsetsManager;
+			auto info = pom.getPlayerOffsets();
+			float dx = m_dest_x - info.x;
+			float dy = m_dest_y - info.y;
+
+			if (::abs(dx) < tolerance && ::abs(dy) < tolerance)
 			{
-				auto info = getPlayerInfo();
-				float dx = m_dest_x - info.x;
-				float dy = m_dest_y - info.y;
-
-				if (::abs(dx) < tolerance && ::abs(dy) < tolerance)
-				{
-					break;
-				}
-
-				float th = ::atan(dy / dx) * 57.295f; // hax?
-
-				if (dx < 0) {
-					th = -th;
-				}
-				else {
-					th = 180 - th;
-				}
-
+				m_processManager.writeMemory<char>(
+					m_core.m_offsetManager.m_playerOffsetsManager.moveAddr(),
+					0
+				);
+				m_nextStep = false;
+				return;
 			}
+
+			float th = ::atan(dy / dx) * 57.295f; // hax?
+
+			if (dx < 0) {
+				th = -th;
+			}
+			else {
+				th = 180 - th;
+			}
+			m_processManager.writeMemory<float>(
+				m_core.m_offsetManager.m_playerOffsetsManager.angleAddr(),
+				th
+				);
+
+			m_processManager.writeMemory<char>(
+				m_core.m_offsetManager.m_playerOffsetsManager.moveAddr(),
+				7
+				);
+
+			std::this_thread::sleep_for(std::chrono::milliseconds(500));
 		}
 	}
 }

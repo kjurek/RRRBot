@@ -6,6 +6,7 @@
 #include "rrrbotapplication.h"
 #include "PressKeyCommand.h"
 #include "MouseClickCommand.h"
+#include "GotoXYCommand.h"
 #include "UpdatePlayerInfoCommand.h"
 
 RRRBotApplication::RRRBotApplication(QWidget *parent)
@@ -111,7 +112,8 @@ void RRRBotApplication::handleLoadConfig()
 	m_core.registerCommand(std::make_shared<RRRBot::Commands::CUpdatePlayerInfoCommand>(m_processManager, m_core));
 	m_core.registerCommand(std::make_shared<RRRBot::Commands::CPressKeyCommand>(m_processManager));
 	m_core.registerCommand(std::make_shared<RRRBot::Commands::CMouseClickCommand>(m_processManager, m_core));
-	
+	m_core.registerCommand(std::make_shared<RRRBot::Commands::CGotoXYCommand>(m_processManager, m_core));
+
 	for (int i = 1; i < ui.tabWidget->count(); ++i)
 	{
 		ui.tabWidget->setTabEnabled(i, true);
