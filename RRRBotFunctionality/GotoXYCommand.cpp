@@ -8,7 +8,7 @@ namespace RRRBot
 	{
 		std::shared_ptr<CCommand> CGotoXYCommand::clone()
 		{
-			auto copy = std::make_shared<CGotoXYCommand>(m_processManager);
+			auto copy = std::make_shared<CGotoXYCommand>(m_processManager, m_core);
 			copy->m_nextStep = m_nextStep;
 			copy->m_dest_x = m_dest_x;
 			copy->m_dest_y = m_dest_y;
@@ -33,11 +33,18 @@ namespace RRRBot
 			m_dest_y = ::atof(y.c_str());
 		}
 
+		bool CGotoXYCommand::hasNextStep()
+		{
+			return m_nextStep;
+		}
+
 		void CGotoXYCommand::commandStep()
 		{
 			static const float tolerance = 5.0f;
 			static auto pom = m_core.m_offsetManager.m_playerOffsetsManager;
-			auto info = pom.getPlayerOffsets();
+			auto c = m_core.getCommand("UpdatePlayerInfo");
+			c->execute();
+			auto info = m_core.getPlayer();
 			float dx = m_dest_x - info.x;
 			float dy = m_dest_y - info.y;
 
