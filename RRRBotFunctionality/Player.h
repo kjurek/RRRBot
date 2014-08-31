@@ -11,7 +11,7 @@ namespace RRRBot
 		struct Player
 		{
 			int hp, mp, maxHp, maxMp;
-			float x, y, z, angle;
+			float x, y, z, rotH, rotV;
 			std::string name;
 			Inventory inventory;
 		};

@@ -29,7 +29,8 @@ namespace RRRBot
 			player.x = m_processManager.readMemory<float>(playerOffsetManager.xAddr());
 			player.y = m_processManager.readMemory<float>(playerOffsetManager.yAddr());
 			player.z = m_processManager.readMemory<float>(playerOffsetManager.zAddr());
-			player.angle = m_processManager.readMemory<float>(playerOffsetManager.angleAddr());
+			player.rotH = m_processManager.readMemory<float>(playerOffsetManager.rotHAddr());
+			player.rotV = m_processManager.readMemory<float>(playerOffsetManager.rotVAddr());
 
 			m_core.setPlayer(player);
 			m_nextStep = false;

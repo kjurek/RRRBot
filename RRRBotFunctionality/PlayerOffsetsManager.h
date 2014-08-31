@@ -18,7 +18,8 @@ namespace RRRBot
 			DWORD xAddr();
 			DWORD yAddr();
 			DWORD zAddr();
-			DWORD angleAddr();
+			DWORD rotHAddr();
+			DWORD rotVAddr();
 			DWORD moveAddr();
 		private:
 			CProcessManager* m_pProcessManager;

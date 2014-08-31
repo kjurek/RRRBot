@@ -11,7 +11,7 @@ namespace RRRBot
 		{
 			int base;
 			int x, y, z;
-			int angle;
+			int rotH, rotV;
 			std::vector<int> move;
 		};
 	}

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>335</width>
-    <height>395</height>
+    <width>338</width>
+    <height>379</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="GeneralTab">
        <attribute name="title">
@@ -33,7 +33,7 @@
           <x>9</x>
           <y>9</y>
           <width>291</width>
-          <height>141</height>
+          <height>167</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
@@ -43,42 +43,17 @@
             <string>Process Info</string>
            </property>
            <layout class="QGridLayout" name="gridLayout_6">
-            <item row="1" column="1">
-             <widget class="QLabel" name="ProcessIdValue">
+            <item row="6" column="1">
+             <widget class="QComboBox" name="ModulesComboBox"/>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="ModulesLabel">
               <property name="text">
-               <string/>
+               <string>Modules:</string>
               </property>
              </widget>
             </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="ProcessIdLabel">
-              <property name="text">
-               <string>Process id: </string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLabel" name="WindowHandleValue">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="WindowHandleLabel">
-              <property name="text">
-               <string>Window handle:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="ProcessHandleLabel">
-              <property name="text">
-               <string>Process handle:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
+            <item row="5" column="1">
              <widget class="QLabel" name="ProcessHandleValue">
               <property name="text">
                <string/>
@@ -86,22 +61,51 @@
              </widget>
             </item>
             <item row="5" column="0">
+             <widget class="QLabel" name="ProcessHandleLabel">
+              <property name="text">
+               <string>Process handle:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="ProcessIdValue">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="ProcessIdLabel">
+              <property name="text">
+               <string>Process id: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="WindowHandleLabel">
+              <property name="text">
+               <string>Window handle:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLabel" name="WindowHandleValue">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
              <widget class="QPushButton" name="GetProcessInfoButton">
               <property name="text">
                <string>Get Process Info</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
-             <widget class="QLineEdit" name="ProcessNameEdit"/>
-            </item>
-            <item row="4" column="1">
-             <widget class="QComboBox" name="ModulesComboBox"/>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="ModulesLabel">
-              <property name="text">
-               <string>Modules:</string>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="ProcessNameEdit">
+              <property name="toolTip">
+               <string>Type window title here</string>
               </property>
              </widget>
             </item>
@@ -244,7 +248,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>335</width>
+     <width>338</width>
      <height>21</height>
     </rect>
    </property>

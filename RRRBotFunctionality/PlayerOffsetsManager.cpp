@@ -26,9 +26,14 @@ namespace RRRBot
 			return gameDllAddress + m_playerOffsets.z;
 		}
 
-		DWORD CPlayerOffsetsManager::angleAddr()
+		DWORD CPlayerOffsetsManager::rotHAddr()
 		{
-			return m_pProcessManager->readMemory<DWORD>(gameDllAddress + m_playerOffsets.angle);
+			return gameDllAddress + m_playerOffsets.rotH;
+		}
+
+		DWORD CPlayerOffsetsManager::rotVAddr()
+		{
+			return gameDllAddress + m_playerOffsets.rotV;
 		}
 
 		DWORD CPlayerOffsetsManager::moveAddr()
