@@ -48,10 +48,10 @@ public:
 	}
 
 	template <typename T>
-	void writeMemory(DWORD address, T* values, size_t nBytes)
+	void writeMemory(DWORD address, T* values, size_t count)
 	{
 		size_t nBytesWritten;
-		BOOL operationResult = WriteProcessMemory(m_hProcess, address, values, nBytes, NULL);
+		BOOL operationResult = WriteProcessMemory(m_hProcess, address, values, count * sizeof(T), NULL);
 		if (FALSE == operationResult)
 		{
 			throw CProcessManagerException();
@@ -71,16 +71,49 @@ public:
 	}
 
 	template <typename T>
-	std::vector<T> readMemory(DWORD address, size_t nBytes)
+	std::vector<T> readMemory(DWORD address, size_t count)
 	{
 		std::vector<T> result(nBytes);
 
-		BOOL operationResult = ReadProcessMemory(m_hProcess, address, &result[0], nBytes, NULL);
+		BOOL operationResult = ReadProcessMemory(m_hProcess, address, &result[0], count * sizeof(T), NULL);
 		if (FALSE == operationResult)
 		{
 			throw CProcessManagerException();
 		}
 		return result;
+	}
+
+	template <>
+	std::string readMemory(DWORD address)
+	{
+		std::vector<char> result;
+		char c;
+		size_t currOffset = 0;
+
+		do
+		{
+			c = readMemory<char>(address + currOffset++);
+			result.push_back(c);
+		} while (c != '\0');
+
+		return std::string(result.begin(), result.end());
+	}
+
+	template <>
+	std::wstring readMemory(DWORD address)
+	{
+		std::vector<wchar_t> result;
+		wchar_t c;
+		size_t currOffset = 0;
+
+		do
+		{
+			c = readMemory<wchar_t>(address + currOffset);
+			currOffset += sizeof(wchar_t);
+			result.push_back(c);
+		} while (c != L'\0');
+
+		return std::wstring(result.begin(), result.end());
 	}
 
 private:

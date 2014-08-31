@@ -9,10 +9,14 @@ namespace RRRBot
 	{
 		struct PlayerOffsets
 		{
-			int base;
+			std::vector<int> base;
 			int x, y, z;
+			int flightTime, maxFlightTime;
+			int hp, maxHp;
+			int mp, maxMp;
 			int rotH, rotV;
-			std::vector<int> move;
+			int move;
+			int name;
 		};
 	}
 }

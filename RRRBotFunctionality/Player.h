@@ -10,9 +10,9 @@ namespace RRRBot
 	{
 		struct Player
 		{
-			int hp, mp, maxHp, maxMp;
+			int hp, mp, maxHp, maxMp, flightTime, maxFlightTime;
 			float x, y, z, rotH, rotV;
-			std::string name;
+			std::wstring name;
 			Inventory inventory;
 		};
 	}

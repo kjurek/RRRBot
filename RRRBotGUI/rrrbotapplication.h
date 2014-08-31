@@ -4,6 +4,7 @@
 #include <memory>
 #include <QtWidgets/QMainWindow>
 #include <qtimer.h>
+#include <mutex>
 #include "ui_rrrbotapplication.h"
 #include "ProcessManager.h"
 #include "ConfigLoader.h"
@@ -20,7 +21,8 @@ public:
 private slots:
 	void handleGetProcessInfoButton();
 	void handleLaunchCommandButton();
-	void handleClearButtonCommand();
+	void handleConsoleClearButtonCommand();
+	void handleLogClearButtonCommand();
 	void handleLoadConfig();
 	void handleRefresh();
 private:

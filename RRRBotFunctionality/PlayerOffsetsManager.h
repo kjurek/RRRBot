@@ -15,9 +15,17 @@ namespace RRRBot
 			void setPlayerOffsets(Offsets::PlayerOffsets& playerOffsets) { m_playerOffsets = playerOffsets; }
 			Offsets::PlayerOffsets getPlayerOffsets() const { return m_playerOffsets; }
 			
+			DWORD baseAddr();
 			DWORD xAddr();
 			DWORD yAddr();
 			DWORD zAddr();
+			DWORD flightTimeAddr();
+			DWORD maxFlightTimeAddr();
+			DWORD nameAddr();
+			DWORD hpAddr();
+			DWORD maxHpAddr();
+			DWORD mpAddr();
+			DWORD maxMpAddr();
 			DWORD rotHAddr();
 			DWORD rotVAddr();
 			DWORD moveAddr();

@@ -15,7 +15,8 @@ RRRBotApplication::RRRBotApplication(QWidget *parent)
 	ui.setupUi(this);
 	connect(ui.GetProcessInfoButton, SIGNAL(clicked()), this, SLOT(handleGetProcessInfoButton()));
 	connect(ui.LaunchCommandButton, SIGNAL(clicked()), this, SLOT(handleLaunchCommandButton()));
-	connect(ui.ClearButton, SIGNAL(clicked()), this, SLOT(handleClearButtonCommand()));
+	connect(ui.ConsoleClearButton, SIGNAL(clicked()), this, SLOT(handleConsoleClearButtonCommand()));
+	connect(ui.LogClearButton, SIGNAL(clicked()), this, SLOT(handleLogClearButtonCommand()));
 	connect(ui.actionLoad_Config, SIGNAL(triggered()), this, SLOT(handleLoadConfig()));
 
 	m_timer = new QTimer(this);
@@ -93,13 +94,20 @@ void RRRBotApplication::handleLaunchCommandButton()
 	}
 }
 
-void RRRBotApplication::handleClearButtonCommand()
+void RRRBotApplication::handleConsoleClearButtonCommand()
 {
 	ui.CommandOutputEdit->clear();
 }
 
+
+void RRRBotApplication::handleLogClearButtonCommand()
+{
+	ui.LogEdit->clear();
+}
+
 void RRRBotApplication::handleLoadConfig()
 {
+	m_timer->stop();
 	QString configFilePath = QFileDialog::getOpenFileName();
 	m_configLoader.load(configFilePath.toStdString());
 	
@@ -133,14 +141,25 @@ void RRRBotApplication::handleLoadConfig()
 
 	logEdit->append("");
 	logEdit->append("Player offsets:");
-	appendOffsetFunc(playerOffsets.base, "base");
+	for (int i = 0; i < playerOffsets.base.size(); ++i)
+	{
+		std::ostringstream os;
+		os << "base[" << i << "]";
+		appendOffsetFunc(playerOffsets.base[i], os.str());
+	}
 	appendOffsetFunc(playerOffsets.x, "x");
 	appendOffsetFunc(playerOffsets.y, "y");
 	appendOffsetFunc(playerOffsets.z, "z");
+	appendOffsetFunc(playerOffsets.hp, "hp");
+	appendOffsetFunc(playerOffsets.maxHp, "maxHp");
+	appendOffsetFunc(playerOffsets.mp, "mp");
+	appendOffsetFunc(playerOffsets.maxMp, "maxMp");
+	appendOffsetFunc(playerOffsets.flightTime, "flightTime");
+	appendOffsetFunc(playerOffsets.maxFlightTime, "maxFlightTime");
+	appendOffsetFunc(playerOffsets.name, "name");
 	appendOffsetFunc(playerOffsets.rotH, "rotH");
 	appendOffsetFunc(playerOffsets.rotV, "rotV");
-	appendOffsetFunc(playerOffsets.move[0], "move[0]");
-	appendOffsetFunc(playerOffsets.move[1], "move[1]");	
+	appendOffsetFunc(playerOffsets.move, "move");
 	m_timer->start(1000);
 }
 
@@ -158,4 +177,23 @@ void RRRBotApplication::handleRefresh()
 
 	os << "horizontal: " << player.rotH << " vertical: " << player.rotV;
 	ui.AngleValue->setText(os.str().c_str());
+	ui.NameValue->setText(QString::fromWCharArray(player.name.c_str()));
+
+	os.str("");
+	os.clear();
+
+	os << player.hp << " / " << player.maxHp;
+	ui.HpValue->setText(os.str().c_str());
+
+	os.str("");
+	os.clear();
+
+	os << player.mp << " / " << player.maxMp;
+	ui.MpValue->setText(os.str().c_str());
+
+	os.str("");
+	os.clear();
+
+	os << player.flightTime << " / " << player.maxFlightTime;
+	ui.FlightTimeValue->setText(os.str().c_str());
 }

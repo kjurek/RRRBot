@@ -19,21 +19,27 @@ namespace RRRBot
 			QJsonDocument configDoc(QJsonDocument::fromJson(configData));
 			QJsonObject root(configDoc.object());
 			QJsonObject offsets = root["Offsets"].toObject();
-
 			QJsonObject playerOffsets = offsets["Player"].toObject();
-			m_playerOffsets.base = playerOffsets["base"].toInt();
+						
+			QJsonArray playerBaseOffsetsArray = playerOffsets["base"].toArray();
+			for (int i = 0; i < playerBaseOffsetsArray.size(); ++i)
+			{
+				m_playerOffsets.base.push_back(playerBaseOffsetsArray[i].toInt());
+			}
 			m_playerOffsets.x = playerOffsets["x"].toInt();
 			m_playerOffsets.y = playerOffsets["y"].toInt();
 			m_playerOffsets.z = playerOffsets["z"].toInt();
+			m_playerOffsets.flightTime = playerOffsets["flightTime"].toInt();
+			m_playerOffsets.maxFlightTime = playerOffsets["maxFlightTime"].toInt();
+			m_playerOffsets.hp = playerOffsets["hp"].toInt();
+			m_playerOffsets.maxHp = playerOffsets["maxHp"].toInt();
+			m_playerOffsets.mp = playerOffsets["mp"].toInt();
+			m_playerOffsets.maxMp = playerOffsets["maxMp"].toInt();
 			m_playerOffsets.rotH = playerOffsets["rotH"].toInt();
 			m_playerOffsets.rotV = playerOffsets["rotV"].toInt();
-
-			QJsonArray moveOffsetsArray = playerOffsets["move"].toArray();
-			for (int i = 0; i < moveOffsetsArray.size(); ++i)
-			{
-				m_playerOffsets.move.push_back(moveOffsetsArray[i].toInt());
-			}
-
+			m_playerOffsets.move = playerOffsets["move"].toInt();
+			m_playerOffsets.name = playerOffsets["name"].toInt();
+			
 			QJsonObject mouseOffsets = offsets["Mouse"].toObject();
 			m_mouseOffsets.x = mouseOffsets["x"].toInt();
 			m_mouseOffsets.y = mouseOffsets["y"].toInt();

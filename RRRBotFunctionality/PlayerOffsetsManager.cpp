@@ -11,6 +11,16 @@ namespace RRRBot
 			gameDllAddress = reinterpret_cast<DWORD>(m_pProcessManager->getModuleAddress("Game.dll"));
 		}
 
+		DWORD CPlayerOffsetsManager::baseAddr()
+		{
+			DWORD addr = gameDllAddress;
+			for (auto offset : m_playerOffsets.base)
+			{
+				addr = m_pProcessManager->readMemory<DWORD>(addr + offset);
+			}
+			return addr;			
+		}
+
 		DWORD CPlayerOffsetsManager::xAddr()
 		{
 			return gameDllAddress + m_playerOffsets.x;
@@ -26,6 +36,41 @@ namespace RRRBot
 			return gameDllAddress + m_playerOffsets.z;
 		}
 
+		DWORD CPlayerOffsetsManager::flightTimeAddr()
+		{
+			return gameDllAddress + m_playerOffsets.flightTime;
+		}
+
+		DWORD CPlayerOffsetsManager::maxFlightTimeAddr()
+		{
+			return gameDllAddress + m_playerOffsets.maxFlightTime;
+		}
+
+		DWORD CPlayerOffsetsManager::nameAddr()
+		{
+			return baseAddr() + m_playerOffsets.name;
+		}
+
+		DWORD CPlayerOffsetsManager::hpAddr()
+		{
+			return gameDllAddress + m_playerOffsets.hp;
+		}
+
+		DWORD CPlayerOffsetsManager::maxHpAddr()
+		{
+			return gameDllAddress + m_playerOffsets.maxHp;
+		}
+
+		DWORD CPlayerOffsetsManager::mpAddr()
+		{
+			return gameDllAddress + m_playerOffsets.mp;
+		}
+
+		DWORD CPlayerOffsetsManager::maxMpAddr()
+		{
+			return gameDllAddress + m_playerOffsets.maxMp;
+		}
+
 		DWORD CPlayerOffsetsManager::rotHAddr()
 		{
 			return gameDllAddress + m_playerOffsets.rotH;
@@ -38,7 +83,7 @@ namespace RRRBot
 
 		DWORD CPlayerOffsetsManager::moveAddr()
 		{
-			return m_pProcessManager->readMemory<DWORD>(m_playerOffsets.base + m_playerOffsets.move[0]) + m_playerOffsets.move[1];
+			return baseAddr() + m_playerOffsets.move;
 		}
 	}
 }
