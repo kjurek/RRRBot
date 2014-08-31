@@ -12,6 +12,7 @@ namespace RRRBot
 			copy->m_nextStep = m_nextStep;
 			copy->m_dest_x = m_dest_x;
 			copy->m_dest_y = m_dest_y;
+			copy->m_dest_z = m_dest_z;
 			return copy;
 		}
 
@@ -24,7 +25,7 @@ namespace RRRBot
 		{
 			std::string x;
 			std::string y;
-			if ((is >> m_dest_x >> m_dest_y).rdstate() & std::ios::failbit)
+			if ((is >> m_dest_x >> m_dest_y >> m_dest_z).rdstate() & std::ios::failbit)
 			{
 				throw CCommandException("Invalid input while parsing MoveCommand arguments");
 			}
@@ -38,14 +39,16 @@ namespace RRRBot
 		void CMoveCommand::commandStep()
 		{
 			static const float tolerance = 5.0f;
+			static const float RAD_TO_DEG = 57.295f;
 			static auto pom = m_core.m_offsetManager.m_playerOffsetsManager;
-			auto c = m_core.getCommand("UpdatePlayerInfo");
-			c->execute();
+			m_core.getCommand("UpdatePlayerInfo")->execute();
 			auto info = m_core.getPlayer();
 			float dx = m_dest_x - info.x;
 			float dy = m_dest_y - info.y;
+			float dz = m_dest_z - info.z;
+			float distance = std::sqrt(dx*dx + dy*dy + dz*dz);
 
-			if (::abs(dx) < tolerance && ::abs(dy) < tolerance)
+			if ( distance < tolerance )
 			{
 				m_processManager.writeMemory<char>(
 					m_core.m_offsetManager.m_playerOffsetsManager.moveAddr(),
@@ -55,19 +58,31 @@ namespace RRRBot
 				return;
 			}
 
-			float th = ::atan(dy / dx) * 57.295f; // hax?
+			float horizontalAngle = ::atan(dy / dx) * RAD_TO_DEG;
+			float verticalAngle = ::atan(dz / std::sqrt(dx*dx + dy*dy)) * RAD_TO_DEG;
 
 			if (dx < 0) {
-				th = -th;
+				horizontalAngle = -horizontalAngle;
 			}
 			else {
-				th = 180 - th;
+				horizontalAngle = 180 - horizontalAngle;
 			}
+
+			if ( ((dz < 0) && (verticalAngle < 0)) || ((dz > 0) && (verticalAngle > 0)) )
+			{
+				verticalAngle = -verticalAngle;
+			}
+			
 			m_processManager.writeMemory<float>(
 				m_core.m_offsetManager.m_playerOffsetsManager.rotHAddr(),
-				th
+				horizontalAngle
 				);
 
+			m_processManager.writeMemory<float>(
+				m_core.m_offsetManager.m_playerOffsetsManager.rotVAddr(),
+				verticalAngle
+				);
+			
 			m_processManager.writeMemory<char>(
 				m_core.m_offsetManager.m_playerOffsetsManager.moveAddr(),
 				7

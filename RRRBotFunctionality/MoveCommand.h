@@ -29,6 +29,7 @@ namespace RRRBot
 			bool m_nextStep;
 			float m_dest_x;
 			float m_dest_y;
+			float m_dest_z;
 		};
 	}
 }
