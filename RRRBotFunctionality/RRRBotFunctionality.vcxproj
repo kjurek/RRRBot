@@ -58,6 +58,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -72,6 +73,7 @@
     <ClInclude Include="CommandRunningState.h" />
     <ClInclude Include="CommandState.h" />
     <ClInclude Include="Core.h" />
+    <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="MouseClickCommand.h" />
@@ -92,6 +94,7 @@
     <ClCompile Include="CommandPausedState.cpp" />
     <ClCompile Include="CommandRunningState.cpp" />
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="MouseClickCommand.cpp" />
     <ClCompile Include="MouseOffsetsManager.cpp" />
     <ClCompile Include="OffsetsManager.cpp" />

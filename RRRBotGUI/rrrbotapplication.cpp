@@ -6,6 +6,7 @@
 #include "rrrbotapplication.h"
 #include "PressKeyCommand.h"
 #include "MouseClickCommand.h"
+#include "MoveCommand.h"
 #include "UpdatePlayerInfoCommand.h"
 
 RRRBotApplication::RRRBotApplication(QWidget *parent)
@@ -19,7 +20,6 @@ RRRBotApplication::RRRBotApplication(QWidget *parent)
 
 	m_timer = new QTimer(this);
 	connect(m_timer, SIGNAL(timeout()), this, SLOT(handleRefresh()));
-	m_timer->start(1000);
 }
 
 RRRBotApplication::~RRRBotApplication()
@@ -111,7 +111,8 @@ void RRRBotApplication::handleLoadConfig()
 	m_core.registerCommand(std::make_shared<RRRBot::Commands::CUpdatePlayerInfoCommand>(m_processManager, m_core));
 	m_core.registerCommand(std::make_shared<RRRBot::Commands::CPressKeyCommand>(m_processManager));
 	m_core.registerCommand(std::make_shared<RRRBot::Commands::CMouseClickCommand>(m_processManager, m_core));
-	
+	m_core.registerCommand(std::make_shared<RRRBot::Commands::CMoveCommand>(m_processManager, m_core));
+
 	for (int i = 1; i < ui.tabWidget->count(); ++i)
 	{
 		ui.tabWidget->setTabEnabled(i, true);
@@ -136,13 +137,16 @@ void RRRBotApplication::handleLoadConfig()
 	appendOffsetFunc(playerOffsets.x, "x");
 	appendOffsetFunc(playerOffsets.y, "y");
 	appendOffsetFunc(playerOffsets.z, "z");
-	appendOffsetFunc(playerOffsets.angle, "angle");
+	appendOffsetFunc(playerOffsets.rotH, "rotH");
+	appendOffsetFunc(playerOffsets.rotV, "rotV");
 	appendOffsetFunc(playerOffsets.move[0], "move[0]");
 	appendOffsetFunc(playerOffsets.move[1], "move[1]");	
+	m_timer->start(1000);
 }
 
 void RRRBotApplication::handleRefresh()
 {
+	m_core.getCommand("UpdatePlayerInfo")->execute();
 	std::ostringstream os;
 	auto player = m_core.getPlayer();
 	
@@ -152,6 +156,6 @@ void RRRBotApplication::handleRefresh()
 	os.str("");
 	os.clear();
 
-	os << player.angle;
+	os << "horizontal: " << player.rotH << " vertical: " << player.rotV;
 	ui.AngleValue->setText(os.str().c_str());
 }

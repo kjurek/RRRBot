@@ -1,2 +1,12 @@
+RRRBot.v12.suo
+Debug/
+Deploy/Debug/
+RRRBot.opensdf
+RRRBotFunctionality/Debug/
+RRRBotFunctionality/RRRBotFunctionality.vcxproj.user
+RRRBotGUI/Debug/
+RRRBotGUI/GeneratedFiles/
+Win32/
+config~
 Release
 *.sdf

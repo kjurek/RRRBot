@@ -25,7 +25,8 @@ namespace RRRBot
 			m_playerOffsets.x = playerOffsets["x"].toInt();
 			m_playerOffsets.y = playerOffsets["y"].toInt();
 			m_playerOffsets.z = playerOffsets["z"].toInt();
-			m_playerOffsets.angle = playerOffsets["angle"].toInt();
+			m_playerOffsets.rotH = playerOffsets["rotH"].toInt();
+			m_playerOffsets.rotV = playerOffsets["rotV"].toInt();
 
 			QJsonArray moveOffsetsArray = playerOffsets["move"].toArray();
 			for (int i = 0; i < moveOffsetsArray.size(); ++i)

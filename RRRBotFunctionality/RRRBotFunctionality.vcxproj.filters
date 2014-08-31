@@ -114,6 +114,9 @@
     <ClInclude Include="OffsetsManager.h">
       <Filter>Header Files\Offsets\OffsetManagers</Filter>
     </ClInclude>
+    <ClInclude Include="MoveCommand.h">
+      <Filter>Header Files\Commands\BasicCommands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -150,6 +153,9 @@
       <Filter>Source Files\Offsets\OffsetManagers</Filter>
     </ClCompile>
     <ClCompile Include="UpdatePlayerInfoCommand.cpp">
+      <Filter>Source Files\Commands\BasicCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveCommand.cpp">
       <Filter>Source Files\Commands\BasicCommands</Filter>
     </ClCompile>
   </ItemGroup>
