@@ -3,10 +3,11 @@
 
 #include <string>
 #include <stdexcept>
+#include <sstream>
 #include <vector>
 #include "stdafx.h"
 
-class CProcessManagerException : std::exception
+class CProcessManagerException : public std::exception
 {
 public:
 	CProcessManagerException();
@@ -65,7 +66,9 @@ public:
 		BOOL operationResult = ReadProcessMemory(m_hProcess, reinterpret_cast<LPCVOID>(address), &result, sizeof(T), NULL);
 		if (FALSE == operationResult)
 		{
-			throw CProcessManagerException();
+			std::ostringstream os;
+			os << "failed to read " << sizeof(T) << " bytes from address: " << address;
+			throw CProcessManagerException(os.str());
 		}
 		return result;
 	}
@@ -83,8 +86,7 @@ public:
 		return result;
 	}
 
-	template <>
-	std::string readMemory(DWORD address)
+	std::string readString(DWORD address, size_t maxLen)
 	{
 		std::vector<char> result;
 		char c;
@@ -94,23 +96,31 @@ public:
 		{
 			c = readMemory<char>(address + currOffset++);
 			result.push_back(c);
+			if (result.size() > maxLen)
+			{
+				return "";
+			}
 		} while (c != '\0');
 
 		return std::string(result.begin(), result.end());
 	}
 
-	template <>
-	std::wstring readMemory(DWORD address)
+	std::wstring readWString(DWORD address, size_t maxLen)
 	{
 		std::vector<wchar_t> result;
 		wchar_t c;
 		size_t currOffset = 0;
-
+		
 		do
 		{
 			c = readMemory<wchar_t>(address + currOffset);
 			currOffset += sizeof(wchar_t);
 			result.push_back(c);
+			if (result.size() > maxLen)
+			{
+				return L"";
+			}
+
 		} while (c != L'\0');
 
 		return std::wstring(result.begin(), result.end());

@@ -21,11 +21,7 @@ namespace RRRBot
 			QJsonObject offsets = root["Offsets"].toObject();
 			QJsonObject playerOffsets = offsets["Player"].toObject();
 						
-			QJsonArray playerBaseOffsetsArray = playerOffsets["base"].toArray();
-			for (int i = 0; i < playerBaseOffsetsArray.size(); ++i)
-			{
-				m_playerOffsets.base.push_back(playerBaseOffsetsArray[i].toInt());
-			}
+			m_playerOffsets.base = playerOffsets["base"].toInt();
 			m_playerOffsets.x = playerOffsets["x"].toInt();
 			m_playerOffsets.y = playerOffsets["y"].toInt();
 			m_playerOffsets.z = playerOffsets["z"].toInt();

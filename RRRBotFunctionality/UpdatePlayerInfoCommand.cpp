@@ -37,7 +37,7 @@ namespace RRRBot
 			player.maxFlightTime = m_processManager.readMemory<int>(playerOffsetManager.maxFlightTimeAddr());
 			player.rotH = m_processManager.readMemory<float>(playerOffsetManager.rotHAddr());
 			player.rotV = m_processManager.readMemory<float>(playerOffsetManager.rotVAddr());
-			player.name = m_processManager.readMemory<std::wstring>(playerOffsetManager.nameAddr());
+			player.name = m_processManager.readWString(playerOffsetManager.nameAddr(), 20);
 			m_core.setPlayer(player);
 			m_nextStep = false;
 		}

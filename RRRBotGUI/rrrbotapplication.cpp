@@ -141,12 +141,7 @@ void RRRBotApplication::handleLoadConfig()
 
 	logEdit->append("");
 	logEdit->append("Player offsets:");
-	for (int i = 0; i < playerOffsets.base.size(); ++i)
-	{
-		std::ostringstream os;
-		os << "base[" << i << "]";
-		appendOffsetFunc(playerOffsets.base[i], os.str());
-	}
+	appendOffsetFunc(playerOffsets.base, "base");
 	appendOffsetFunc(playerOffsets.x, "x");
 	appendOffsetFunc(playerOffsets.y, "y");
 	appendOffsetFunc(playerOffsets.z, "z");
@@ -165,35 +160,42 @@ void RRRBotApplication::handleLoadConfig()
 
 void RRRBotApplication::handleRefresh()
 {
-	m_core.getCommand("UpdatePlayerInfo")->execute();
-	std::ostringstream os;
-	auto player = m_core.getPlayer();
-	
-	os << "(" << player.x << ", " << player.y << ", " << player.z << ")";
-	ui.PositionValue->setText(os.str().c_str());
+	try
+	{
+		m_core.getCommand("UpdatePlayerInfo")->execute();
+		std::ostringstream os;
+		auto player = m_core.getPlayer();
 
-	os.str("");
-	os.clear();
+		os << "(" << player.x << ", " << player.y << ", " << player.z << ")";
+		ui.PositionValue->setText(os.str().c_str());
 
-	os << "horizontal: " << player.rotH << " vertical: " << player.rotV;
-	ui.AngleValue->setText(os.str().c_str());
-	ui.NameValue->setText(QString::fromWCharArray(player.name.c_str()));
+		os.str("");
+		os.clear();
 
-	os.str("");
-	os.clear();
+		os << "horizontal: " << player.rotH << " vertical: " << player.rotV;
+		ui.AngleValue->setText(os.str().c_str());
+		ui.NameValue->setText(QString::fromWCharArray(player.name.c_str()));
 
-	os << player.hp << " / " << player.maxHp;
-	ui.HpValue->setText(os.str().c_str());
+		os.str("");
+		os.clear();
 
-	os.str("");
-	os.clear();
+		os << player.hp << " / " << player.maxHp;
+		ui.HpValue->setText(os.str().c_str());
 
-	os << player.mp << " / " << player.maxMp;
-	ui.MpValue->setText(os.str().c_str());
+		os.str("");
+		os.clear();
 
-	os.str("");
-	os.clear();
+		os << player.mp << " / " << player.maxMp;
+		ui.MpValue->setText(os.str().c_str());
 
-	os << player.flightTime << " / " << player.maxFlightTime;
-	ui.FlightTimeValue->setText(os.str().c_str());
+		os.str("");
+		os.clear();
+
+		os << player.flightTime << " / " << player.maxFlightTime;
+		ui.FlightTimeValue->setText(os.str().c_str());
+	}
+	catch (std::exception& e)
+	{
+		ui.LogEdit->append(e.what());
+	}
 }

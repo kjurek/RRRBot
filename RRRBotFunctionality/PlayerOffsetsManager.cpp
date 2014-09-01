@@ -1,49 +1,83 @@
+#include <thread>
 #include "PlayerOffsetsManager.h"
 
 namespace RRRBot
 {
 	namespace OffsetManagers
 	{
+		CPlayerOffsetsManager::CPlayerOffsetsManager()
+			:
+			m_gameDllAddress(0),
+			m_baseAddress(0),
+			m_pProcessManager(nullptr),
+			m_playerOffsets({ 0 })
+		{ }
+
 		void CPlayerOffsetsManager::configure(CProcessManager* processManager, Offsets::PlayerOffsets& playerOffsets)
 		{
 			m_pProcessManager = processManager;
 			m_playerOffsets = playerOffsets;
-			gameDllAddress = reinterpret_cast<DWORD>(m_pProcessManager->getModuleAddress("Game.dll"));
+			m_gameDllAddress = reinterpret_cast<DWORD>(m_pProcessManager->getModuleAddress("Game.dll"));
+			initBaseAddress();
+		}
+
+		bool CPlayerOffsetsManager::isBaseAddressValid() const
+		{
+			if (0 == m_baseAddress)
+			{
+				return false;
+			}
+
+			return m_pProcessManager->readMemory<DWORD>(m_baseAddress + 4) != INVALID_BASE;
+		}
+
+		void CPlayerOffsetsManager::initBaseAddress()
+		{
+			int numberOfTriesLeft = 10;
+			while (numberOfTriesLeft--)
+			{
+				m_baseAddress = m_pProcessManager->readMemory<DWORD>(m_playerOffsets.base);
+				if (isBaseAddressValid())
+				{
+					return;
+				}
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+			}	
+			throw "Could not init player base address after 10 tries";
 		}
 
 		DWORD CPlayerOffsetsManager::baseAddr()
 		{
-			DWORD addr = gameDllAddress;
-			for (auto offset : m_playerOffsets.base)
+			if (!isBaseAddressValid())
 			{
-				addr = m_pProcessManager->readMemory<DWORD>(addr + offset);
+				initBaseAddress();
 			}
-			return addr;			
+			return m_baseAddress;
 		}
 
 		DWORD CPlayerOffsetsManager::xAddr()
 		{
-			return gameDllAddress + m_playerOffsets.x;
+			return m_gameDllAddress + m_playerOffsets.x;
 		}
 
 		DWORD CPlayerOffsetsManager::yAddr()
 		{
-			return gameDllAddress + m_playerOffsets.y;
+			return m_gameDllAddress + m_playerOffsets.y;
 		}
 
 		DWORD CPlayerOffsetsManager::zAddr()
 		{
-			return gameDllAddress + m_playerOffsets.z;
+			return m_gameDllAddress + m_playerOffsets.z;
 		}
 
 		DWORD CPlayerOffsetsManager::flightTimeAddr()
 		{
-			return gameDllAddress + m_playerOffsets.flightTime;
+			return m_gameDllAddress + m_playerOffsets.flightTime;
 		}
 
 		DWORD CPlayerOffsetsManager::maxFlightTimeAddr()
 		{
-			return gameDllAddress + m_playerOffsets.maxFlightTime;
+			return m_gameDllAddress + m_playerOffsets.maxFlightTime;
 		}
 
 		DWORD CPlayerOffsetsManager::nameAddr()
@@ -53,32 +87,32 @@ namespace RRRBot
 
 		DWORD CPlayerOffsetsManager::hpAddr()
 		{
-			return gameDllAddress + m_playerOffsets.hp;
+			return m_gameDllAddress + m_playerOffsets.hp;
 		}
 
 		DWORD CPlayerOffsetsManager::maxHpAddr()
 		{
-			return gameDllAddress + m_playerOffsets.maxHp;
+			return m_gameDllAddress + m_playerOffsets.maxHp;
 		}
 
 		DWORD CPlayerOffsetsManager::mpAddr()
 		{
-			return gameDllAddress + m_playerOffsets.mp;
+			return m_gameDllAddress + m_playerOffsets.mp;
 		}
 
 		DWORD CPlayerOffsetsManager::maxMpAddr()
 		{
-			return gameDllAddress + m_playerOffsets.maxMp;
+			return m_gameDllAddress + m_playerOffsets.maxMp;
 		}
 
 		DWORD CPlayerOffsetsManager::rotHAddr()
 		{
-			return gameDllAddress + m_playerOffsets.rotH;
+			return m_gameDllAddress + m_playerOffsets.rotH;
 		}
 
 		DWORD CPlayerOffsetsManager::rotVAddr()
 		{
-			return gameDllAddress + m_playerOffsets.rotV;
+			return m_gameDllAddress + m_playerOffsets.rotV;
 		}
 
 		DWORD CPlayerOffsetsManager::moveAddr()
