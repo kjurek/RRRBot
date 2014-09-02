@@ -18,19 +18,25 @@ public:
 	RRRBotApplication(QWidget *parent = 0);
 	~RRRBotApplication();
 
-private slots:
+	private slots:
 	void handleGetProcessInfoButton();
 	void handleLaunchCommandButton();
 	void handleConsoleClearButtonCommand();
 	void handleLogClearButtonCommand();
 	void handleLoadConfig();
-	void handleRefresh();
+	void handleRefreshPlayerInfoTab();
+	void handleHealTab();
 private:
 	Ui::RRRBotApplicationClass ui;
-	QTimer* m_timer;
+	QTimer* m_infoTabTimer;
+	QTimer* m_healTabTimer;
+
 	CProcessManager m_processManager;
 	RRRBot::Config::CConfigLoader m_configLoader;
 	RRRBot::Core::CCore m_core;
+
+	void stopTimers();
+	void startTimers();
 };
 
 #endif // RRRBOTAPPLICATION_H
