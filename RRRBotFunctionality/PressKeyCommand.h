@@ -1,6 +1,7 @@
 #ifndef PRESSKEYCOMMAND_H
 #define PRESSKEYCOMMAND_H
 
+#include <vector>
 #include "Command.h"
 #include "ProcessManager.h"
 
@@ -24,7 +25,10 @@ namespace RRRBot
 		private:
 			CProcessManager& m_processManager;
 			bool m_nextStep;
-			char m_key;
+			std::vector<std::string> m_keys;
+
+			void keyToKeyDownMessage(const std::string& key);
+			void keyToKeyUpMessage(const std::string& key);
 		};
 	}
 }

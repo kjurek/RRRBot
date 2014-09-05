@@ -13,14 +13,16 @@ RRRBotApplication::RRRBotApplication(QWidget *parent)
 	:	QMainWindow(parent)
 {
 	ui.setupUi(this);
+	m_infoTabTimer = new QTimer(this);
+	m_healTabTimer = new QTimer(this);
+
 	connect(ui.GetProcessInfoButton, SIGNAL(clicked()), this, SLOT(handleGetProcessInfoButton()));
 	connect(ui.LaunchCommandButton, SIGNAL(clicked()), this, SLOT(handleLaunchCommandButton()));
 	connect(ui.ConsoleClearButton, SIGNAL(clicked()), this, SLOT(handleConsoleClearButtonCommand()));
 	connect(ui.LogClearButton, SIGNAL(clicked()), this, SLOT(handleLogClearButtonCommand()));
 	connect(ui.actionLoad_Config, SIGNAL(triggered()), this, SLOT(handleLoadConfig()));
-
-	m_timer = new QTimer(this);
-	connect(m_timer, SIGNAL(timeout()), this, SLOT(handleRefresh()));
+	connect(m_infoTabTimer, SIGNAL(timeout()), this, SLOT(handleRefreshPlayerInfoTab()));
+	connect(m_healTabTimer, SIGNAL(timeout()), this, SLOT(handleHealTab()));
 }
 
 RRRBotApplication::~RRRBotApplication()
@@ -107,7 +109,7 @@ void RRRBotApplication::handleLogClearButtonCommand()
 
 void RRRBotApplication::handleLoadConfig()
 {
-	m_timer->stop();
+	stopTimers();
 	QString configFilePath = QFileDialog::getOpenFileName();
 	m_configLoader.load(configFilePath.toStdString());
 	
@@ -155,10 +157,10 @@ void RRRBotApplication::handleLoadConfig()
 	appendOffsetFunc(playerOffsets.rotH, "rotH");
 	appendOffsetFunc(playerOffsets.rotV, "rotV");
 	appendOffsetFunc(playerOffsets.move, "move");
-	m_timer->start(1000);
+	startTimers();
 }
 
-void RRRBotApplication::handleRefresh()
+void RRRBotApplication::handleRefreshPlayerInfoTab()
 {
 	try
 	{
@@ -198,4 +200,46 @@ void RRRBotApplication::handleRefresh()
 	{
 		ui.LogEdit->append(e.what());
 	}
+}
+
+void RRRBotApplication::handleHealTab()
+{
+	if (ui.HealTabEnabledCheck->checkState() == Qt::Unchecked)
+	{
+		return;
+	}
+
+	try
+	{
+		m_core.getCommand("UpdatePlayerInfo")->execute();
+		auto player = m_core.getPlayer();
+		float hpPercentage = 100 * (static_cast<float>(player.hp) / static_cast<float>(player.maxHp));
+		float mpPercentage = 100 * (static_cast<float>(player.mp) / static_cast<float>(player.maxMp));
+		
+		if (hpPercentage < ui.HPUseSpin->value())
+		{
+			QMessageBox::information(NULL, "info", QString("Pressing ") + ui.HPHealKeyEdit->keySequence().toString(QKeySequence::NativeText));
+		}
+
+		if (mpPercentage < ui.MPUseSpin->value())
+		{
+			QMessageBox::information(NULL, "info", QString("Pressing ") + ui.MPHealKeyEdit->keySequence().toString(QKeySequence::NativeText));
+		}
+	}
+	catch (std::exception& e)
+	{
+		ui.LogEdit->append(e.what());
+	}
+}
+
+void RRRBotApplication::stopTimers()
+{
+	m_healTabTimer->stop();
+	m_infoTabTimer->stop();
+}
+
+void RRRBotApplication::startTimers()
+{
+	m_healTabTimer->start(500);
+	m_infoTabTimer->start(500);
 }
