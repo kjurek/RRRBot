@@ -7,7 +7,7 @@ namespace RRRBot
 	{
 		struct MouseOffsets
 		{
-			int x, y;
+			unsigned int x, y;
 		};
 	}
 }

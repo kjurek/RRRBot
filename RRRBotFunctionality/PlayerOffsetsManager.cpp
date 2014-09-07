@@ -5,54 +5,34 @@ namespace RRRBot
 {
 	namespace OffsetManagers
 	{
-		CPlayerOffsetsManager::CPlayerOffsetsManager()
-			:
-			m_gameDllAddress(0),
-			m_baseAddress(0),
-			m_pProcessManager(nullptr),
-			m_playerOffsets({ 0 })
-		{ }
-
 		void CPlayerOffsetsManager::configure(CProcessManager* processManager, Offsets::PlayerOffsets& playerOffsets)
 		{
 			m_pProcessManager = processManager;
 			m_playerOffsets = playerOffsets;
 			m_gameDllAddress = reinterpret_cast<DWORD>(m_pProcessManager->getModuleAddress("Game.dll"));
-			initBaseAddress();
 		}
 
-		bool CPlayerOffsetsManager::isBaseAddressValid() const
+		bool CPlayerOffsetsManager::isBaseAddressValid(DWORD baseAddress) const
 		{
-			if (0 == m_baseAddress)
-			{
-				return false;
-			}
-
-			return m_pProcessManager->readMemory<DWORD>(m_baseAddress + 4) != INVALID_BASE;
-		}
-
-		void CPlayerOffsetsManager::initBaseAddress()
-		{
-			int numberOfTriesLeft = 10;
-			while (numberOfTriesLeft--)
-			{
-				m_baseAddress = m_pProcessManager->readMemory<DWORD>(m_playerOffsets.base);
-				if (isBaseAddressValid())
-				{
-					return;
-				}
-				std::this_thread::sleep_for(std::chrono::seconds(1));
-			}	
-			throw "Could not init player base address after 10 tries";
+			return m_pProcessManager->readMemory<DWORD>(
+				m_pProcessManager->readMemory<DWORD>(baseAddress + 4) +
+				0x254) == baseAddress;
 		}
 
 		DWORD CPlayerOffsetsManager::baseAddr()
 		{
-			if (!isBaseAddressValid())
+			DWORD base = m_gameDllAddress;
+
+			for (auto& offset : m_playerOffsets.base)
 			{
-				initBaseAddress();
+				base = m_pProcessManager->readMemory<DWORD>(base + offset);
 			}
-			return m_baseAddress;
+			
+			if (!isBaseAddressValid(base))
+			{
+				throw "Could not init base address";
+			}
+			return base;
 		}
 
 		DWORD CPlayerOffsetsManager::xAddr()

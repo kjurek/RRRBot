@@ -24,7 +24,7 @@ public:
 	void handleConsoleClearButtonCommand();
 	void handleLogClearButtonCommand();
 	void handleLoadConfig();
-	void handleRefreshPlayerInfoTab();
+	void handleRefreshInfoTab();
 	void handleHealTab();
 private:
 	Ui::RRRBotApplicationClass ui;

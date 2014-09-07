@@ -58,7 +58,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -86,7 +86,11 @@
     <ClInclude Include="PressKeyCommand.h" />
     <ClInclude Include="ProcessManager.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Target.h" />
+    <ClInclude Include="TargetOffsets.h" />
+    <ClInclude Include="TargetOffsetsManager.h" />
     <ClInclude Include="UpdatePlayerInfoCommand.h" />
+    <ClInclude Include="UpdateTargetInfoCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Command.cpp" />
@@ -101,7 +105,9 @@
     <ClCompile Include="PlayerOffsetsManager.cpp" />
     <ClCompile Include="PressKeyCommand.cpp" />
     <ClCompile Include="ProcessManager.cpp" />
+    <ClCompile Include="TargetOffsetsManager.cpp" />
     <ClCompile Include="UpdatePlayerInfoCommand.cpp" />
+    <ClCompile Include="UpdateTargetInfoCommand.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

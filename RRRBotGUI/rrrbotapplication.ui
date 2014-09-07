@@ -21,7 +21,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="GeneralTab">
        <attribute name="title">
@@ -140,35 +140,7 @@
             <property name="title">
              <string>Player info</string>
             </property>
-            <layout class="QGridLayout" name="gridLayout">
-             <item row="4" column="0">
-              <widget class="QLabel" name="PositionLabel">
-               <property name="text">
-                <string>Position:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="AngleLabel">
-               <property name="text">
-                <string>Angle:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QLabel" name="AngleValue">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QLabel" name="PositionValue">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
+            <layout class="QFormLayout" name="formLayout_3">
              <item row="0" column="0">
               <widget class="QLabel" name="NameLabel">
                <property name="text">
@@ -204,6 +176,13 @@
                </property>
               </widget>
              </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="MpValue">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
              <item row="3" column="0">
               <widget class="QLabel" name="FlightTimeLabel">
                <property name="text">
@@ -218,8 +197,66 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="MpValue">
+             <item row="4" column="0">
+              <widget class="QLabel" name="PositionLabel">
+               <property name="text">
+                <string>Position:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QLabel" name="PositionValue">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="AngleLabel">
+               <property name="text">
+                <string>Angle:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLabel" name="AngleValue">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="TargetInfoGroupBox">
+            <property name="title">
+             <string>Target info</string>
+            </property>
+            <layout class="QFormLayout" name="formLayout_2">
+             <item row="0" column="0">
+              <widget class="QLabel" name="TargetNameLabel">
+               <property name="text">
+                <string>Name:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="TargetHpLabel">
+               <property name="text">
+                <string>Hp:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="TargetNameValue">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="TargetHpValue">
                <property name="text">
                 <string/>
                </property>
@@ -230,7 +267,7 @@
           </item>
          </layout>
         </item>
-        <item row="1" column="0">
+        <item row="3" column="0">
          <spacer name="verticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>

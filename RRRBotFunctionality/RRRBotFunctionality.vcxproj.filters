@@ -117,6 +117,18 @@
     <ClInclude Include="MoveCommand.h">
       <Filter>Header Files\Commands\BasicCommands</Filter>
     </ClInclude>
+    <ClInclude Include="TargetOffsets.h">
+      <Filter>Header Files\Offsets\Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="TargetOffsetsManager.h">
+      <Filter>Header Files\Offsets\OffsetManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="Target.h">
+      <Filter>Header Files\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateTargetInfoCommand.h">
+      <Filter>Header Files\Commands\BasicCommands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -156,6 +168,12 @@
       <Filter>Source Files\Commands\BasicCommands</Filter>
     </ClCompile>
     <ClCompile Include="MoveCommand.cpp">
+      <Filter>Source Files\Commands\BasicCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="TargetOffsetsManager.cpp">
+      <Filter>Source Files\Offsets\OffsetManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdateTargetInfoCommand.cpp">
       <Filter>Source Files\Commands\BasicCommands</Filter>
     </ClCompile>
   </ItemGroup>

@@ -3,25 +3,32 @@
 	{
 		"Mouse":
 		{
-			"x": 15207852,
-			"y": 15207856
+			"x": "E80DAC",
+			"y": "E80DB0"
 		},
 		"Player":
 		{
-			"base": 1628108,	
-			"x": 14799532,
-			"y": 14799528,
-			"z": 14799536,
-			"hp": 14838192,
-			"maxHp": 14838188,
-			"mp": 14838200,
-			"maxMp": 14838196,
-			"flightTime": 14838212,
-			"maxFlightTime": 14838208,
-			"rotH": 14798548,
-			"rotV": 14798540,
-			"move": 5328,
-			"name": 62
+			"base": ["0036979C","19C", "C", "254"],	
+			"x": "E1D2AC",
+			"y": "E1D2A8",
+			"z": "E1D2B0",
+			"hp": "E269B0",
+			"maxHp": "E269AC",
+			"mp": "E269B8",
+			"maxMp": "E269B4",
+			"flightTime": "E269C4",
+			"maxFlightTime": "E269C0",
+			"rotH": "E1CED4",
+			"rotV": "E1CECC",
+			"move": "14D0",
+			"name": "3E"
+		},
+		"Target":
+		{
+			"base": ["9DB3E0", "254"],
+			"hp": "1218",
+			"maxHp": "121C",
+			"name": "3E"			
 		}
 	}
 }

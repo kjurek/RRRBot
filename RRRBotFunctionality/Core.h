@@ -6,6 +6,7 @@
 #include "Command.h"
 #include "OffsetsManager.h"
 #include "Player.h"
+#include "Target.h"
 
 namespace RRRBot
 {
@@ -20,7 +21,10 @@ namespace RRRBot
 			std::shared_ptr<CCommand> getCommand(std::string commandName);
 			
 			GameData::Player getPlayer() const { return m_player; }
+			GameData::Target getTarget() const { return m_target; }
+
 			void setPlayer(GameData::Player& player) { m_player = player; }
+			void setTarget(GameData::Target& target) { m_target = target; }
 
 			RRRBot::OffsetManagers::COffsetsManager m_offsetManager;
 		private:
@@ -33,6 +37,7 @@ namespace RRRBot
 			};
 			std::set <std::shared_ptr<CCommand>, CCommandPtrComparator> m_vpCommands;
 			GameData::Player m_player;
+			GameData::Target m_target;
 		};
 	}	
 }

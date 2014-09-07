@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include "MouseOffsets.h"
 #include "PlayerOffsets.h"
+#include "TargetOffsets.h"
 
 namespace RRRBot
 {
@@ -25,9 +26,11 @@ namespace RRRBot
 
 			Offsets::MouseOffsets getMouseOffsets() { return m_mouseOffsets; }
 			Offsets::PlayerOffsets getPlayerOffsets() { return m_playerOffsets; }
+			Offsets::TargetOffsets getTargetOffsets() { return m_targetOffsets; }
 		private:
 			Offsets::MouseOffsets m_mouseOffsets;
 			Offsets::PlayerOffsets m_playerOffsets;
+			Offsets::TargetOffsets m_targetOffsets;
 		};
 	}
 }

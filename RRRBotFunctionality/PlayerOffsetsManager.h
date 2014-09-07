@@ -11,7 +11,11 @@ namespace RRRBot
 		class CPlayerOffsetsManager
 		{
 		public:
-			CPlayerOffsetsManager();
+			CPlayerOffsetsManager()
+				:
+				m_gameDllAddress(0),
+				m_pProcessManager(nullptr)
+			{ }
 
 			void configure(CProcessManager* processManager, Offsets::PlayerOffsets& playerOffsets);
 			void setPlayerOffsets(Offsets::PlayerOffsets& playerOffsets) { m_playerOffsets = playerOffsets; }
@@ -35,11 +39,8 @@ namespace RRRBot
 			CProcessManager* m_pProcessManager;
 			Offsets::PlayerOffsets m_playerOffsets;
 			DWORD m_gameDllAddress;
-			DWORD m_baseAddress;
 
-			void initBaseAddress();
-			bool isBaseAddressValid() const;
-			static const DWORD INVALID_BASE = 0xCDCDCDCD;
+			bool CPlayerOffsetsManager::isBaseAddressValid(DWORD baseAddress) const;
 		};
 	}
 }
